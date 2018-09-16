@@ -75,7 +75,7 @@ public class test {
         
         System.out.println("----------------------");
         
-        Vuelo vuelo1 = new Vuelo("N234", 100, lista);
+        Vuelo vuelo1 = new Vuelo(5556, 100, lista);
         System.out.println(vuelo1.obeneterInfoVuelo());
         
         System.out.println("----------------------");

@@ -10,28 +10,28 @@ package paquete.clases;
  * @author Leonardo
  */
 public class Vuelo {
-    private String nomVuelo;
+    private int numVuelo;
     private int numAsientos;
     private ListaEnlPasajero listaPasajeros;
 
-    public Vuelo(String nomVuelo, int numAsientos) {
-        this.nomVuelo = nomVuelo;
+    public Vuelo(int numVuelo, int numAsientos) {
+        this.numVuelo = numVuelo;
         this.numAsientos = numAsientos;
         this.listaPasajeros = null;
     }
 
-    public Vuelo(String nomVuelo, int numAsientos, ListaEnlPasajero listaPasajeros) {
-        this.nomVuelo = nomVuelo;
+    public Vuelo(int numVuelo, int numAsientos, ListaEnlPasajero listaPasajeros) {
+        this.numVuelo = numVuelo;
         this.numAsientos = numAsientos;
         this.listaPasajeros = listaPasajeros;
     }
 
-    public String getNomVuelo() {
-        return nomVuelo;
+    public int getNumVuelo() {
+        return numVuelo;
     }
 
-    public void setNomVuelo(String nomVuelo) {
-        this.nomVuelo = nomVuelo;
+    public void setNumVuelo(int numVuelo) {
+        this.numVuelo = numVuelo;
     }
 
     public int getNumAsientos() {
@@ -51,7 +51,7 @@ public class Vuelo {
     }
     
     public String obeneterInfoVuelo() {
-        String cad = "ID del vuelo: " + nomVuelo + 
+        String cad = "Número del vuelo: N" + numVuelo + 
                 "\nAsientos disponibles: " +numAsientos +
                 "\nPasajeros: \n" + listaPasajeros.obtenerInfo();
         return cad;
