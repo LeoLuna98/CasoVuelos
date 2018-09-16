@@ -109,4 +109,21 @@ public class ListaEnlPasajero <E extends Pasajero> {
         }
         return bandera;
     }
+    
+    public Pasajero mayorEdad() {
+        Nodo<E> ptr=L;
+        Pasajero pasajeroMayor = ptr.getInfo();
+        int mayorEdad = ptr.getInfo().getEdad();
+        ptr = ptr.getSiguiente();
+        
+        while(ptr!=null) {
+            if (ptr.getInfo().getEdad()>mayorEdad) {
+               pasajeroMayor = ptr.getInfo();
+               mayorEdad = ptr.getInfo().getEdad();
+            }
+            ptr = ptr.getSiguiente();
+        }
+        
+        return pasajeroMayor;
+    }
 }

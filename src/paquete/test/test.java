@@ -26,21 +26,16 @@ public class test {
         pasj2.generarEdad();
         lista.agregarNuevoPasajero(pasj2);
         
-        int dni = 522;
+        int dni = 465;
         int flag = lista.busquedaDNI(dni);
         System.out.println(flag);
         if (flag == 0) {
             Pasajero pasj3 = new Pasajero("Lefo", dni);
             pasj3.generarEdad();
-            
-            
             lista.agregarNuevoPasajero(pasj3);
         }
         
-        
-        
-        
-        
+        System.out.println(lista.mayorEdad().getEdad());
         
         lista.recorrido();
         
