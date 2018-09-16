@@ -19,13 +19,23 @@ public class test {
         
         ListaEnlPasajero<Pasajero> lista = new ListaEnlPasajero<>();
         
+        /*lista.obtenerInfo();
+        
         if (lista.mayorEdad() == null) {
             JOptionPane.showMessageDialog(null, "Lista vacía");
         }
         
-        Pasajero pasj1 = new Pasajero("Leo", 522);
-        pasj1.generarEdad();
-        lista.agregarNuevoPasajero(pasj1);
+        
+        int dni1 = 522;
+        int flag1 = lista.busquedaDNI(dni1);
+        System.out.println(flag1);
+        if (flag1 == 0) {
+            Pasajero pasj1 = new Pasajero("Leo", dni1);
+            pasj1.generarEdad();
+            lista.agregarNuevoPasajero(pasj1);
+        }
+        
+        
         
         Pasajero pasj2 = new Pasajero("Ledo", 2);
         pasj2.generarEdad();
@@ -40,7 +50,25 @@ public class test {
             lista.agregarNuevoPasajero(pasj3);
         }
         
-        System.out.println(lista.mayorEdad().getEdad());
+        System.out.println(lista.mayorEdad().getEdad());*/
+        
+        Pasajero pj = new Pasajero("Leo", 1234);
+        pj.generarEdad();
+        lista.agregarNuevoPasajero(pj);
+        Pasajero pj2 = new Pasajero("Diana", 9964);
+        pj2.generarEdad();
+        lista.agregarNuevoPasajero(pj2);
+        Pasajero pj3 = new Pasajero("Bruno", 14747);
+        pj3.generarEdad();
+        lista.agregarNuevoPasajero(pj3);
+        Pasajero pj4 = new Pasajero("Roro", 7527);
+        pj4.generarEdad();
+        lista.agregarNuevoPasajero(pj4);
+        
+        lista.obtenerInfo();
+        System.out.println("\n");
+        
+        lista.eliminarDeLista(147475);
         
         lista.obtenerInfo();
         

@@ -127,11 +127,34 @@ public class ListaEnlPasajero <E extends Pasajero> {
 
             return pasajeroMayor;
         } else {
+            JOptionPane.showMessageDialog(null, "Lista vacía");
             return null; //si la lista está vacía
         }
     }
     
     public void eliminarDeLista(long dni) {
-        
+        if (L != null) {
+            Nodo<E> ptr = L;
+            if (ptr.getInfo().getDni() == dni) {
+                L = ptr.getSiguiente();
+            } else {
+                Nodo<E> aux = null;
+                int bandera = 0;
+                while (bandera == 0 && ptr.getSiguiente() != null) {
+                    aux = ptr.getSiguiente();
+                    if (aux.getInfo().getDni() == dni) {
+                        ptr.setSiguiente(aux.getSiguiente());
+                        bandera = 1;
+                    } else {
+                        ptr = ptr.getSiguiente();
+                    }
+                }
+                if (bandera == 0) {
+                    JOptionPane.showMessageDialog(null, "DNI no encontrado, ingrese otro");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Lista vacía, no se puede eliminar elemento");
+        }
     }
 }
