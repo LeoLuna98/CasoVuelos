@@ -85,7 +85,7 @@ public class ListaEnlPasajero <E extends Pasajero> {
         }        
     }
     
-    public void recorrido(){
+    public void obtenerInfo(){
         Nodo<E> ptr=L;
         
         while(ptr!=null){
@@ -111,19 +111,27 @@ public class ListaEnlPasajero <E extends Pasajero> {
     }
     
     public Pasajero mayorEdad() {
-        Nodo<E> ptr=L;
-        Pasajero pasajeroMayor = ptr.getInfo();
-        int mayorEdad = ptr.getInfo().getEdad();
-        ptr = ptr.getSiguiente();
-        
-        while(ptr!=null) {
-            if (ptr.getInfo().getEdad()>mayorEdad) {
-               pasajeroMayor = ptr.getInfo();
-               mayorEdad = ptr.getInfo().getEdad();
-            }
+        if (L != null) {
+            Nodo<E> ptr = L;
+            Pasajero pasajeroMayor = ptr.getInfo();
+            int mayorEdad = ptr.getInfo().getEdad();
             ptr = ptr.getSiguiente();
+
+            while (ptr != null) {
+                if (ptr.getInfo().getEdad() > mayorEdad) {
+                    pasajeroMayor = ptr.getInfo();
+                    mayorEdad = ptr.getInfo().getEdad();
+                }
+                ptr = ptr.getSiguiente();
+            }
+
+            return pasajeroMayor;
+        } else {
+            return null; //si la lista está vacía
         }
+    }
+    
+    public void eliminarDeLista(long dni) {
         
-        return pasajeroMayor;
     }
 }

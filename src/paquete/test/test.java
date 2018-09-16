@@ -5,6 +5,7 @@
  */
 package paquete.test;
 
+import javax.swing.JOptionPane;
 import paquete.clases.ListaEnlPasajero;
 import paquete.clases.Pasajero;
 
@@ -17,6 +18,10 @@ public class test {
     public static void main(String[] args) {
         
         ListaEnlPasajero<Pasajero> lista = new ListaEnlPasajero<>();
+        
+        if (lista.mayorEdad() == null) {
+            JOptionPane.showMessageDialog(null, "Lista vacía");
+        }
         
         Pasajero pasj1 = new Pasajero("Leo", 522);
         pasj1.generarEdad();
@@ -37,7 +42,7 @@ public class test {
         
         System.out.println(lista.mayorEdad().getEdad());
         
-        lista.recorrido();
+        lista.obtenerInfo();
         
     }
     
