@@ -5,6 +5,8 @@
  */
 package paquete.clases;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leonardo
@@ -82,6 +84,7 @@ public class ListaEnlPasajero <E extends Pasajero> {
             ptr.setSiguiente(nuevo);
         }        
     }
+    
     public void recorrido(){
         Nodo<E> ptr=L;
         
@@ -90,5 +93,20 @@ public class ListaEnlPasajero <E extends Pasajero> {
             ptr=ptr.getSiguiente();
         }
         System.out.print("nulo");
+    }
+    
+    public int busquedaDNI(long dni) {
+        Nodo<E> ptr=L;
+        int bandera = 0;
+        
+        while(ptr != null && bandera == 0) {
+            if (ptr.getInfo().getDni() == dni) {
+                bandera = 1;
+                JOptionPane.showMessageDialog(null, "DNI ya agregado, ingrese otro DNI");
+            } else {
+            ptr=ptr.getSiguiente();
+            }
+        }
+        return bandera;
     }
 }
