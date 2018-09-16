@@ -51,8 +51,8 @@ public class Pasajero {
     }
     
     public String toString() {
-        return "\nNombre del pasajero: " + this.nombre +
-                "\nDNI del pasajero: " + this.dni +
-                "\nEdad del pasajero: " + this.edad;
+        return "\n-Nombre del pasajero: " + this.nombre +
+                "\n-DNI del pasajero: " + this.dni +
+                "\n-Edad del pasajero: " + this.edad;
     }    
 }

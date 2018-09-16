@@ -85,14 +85,14 @@ public class ListaEnlPasajero <E extends Pasajero> {
         }        
     }
     
-    public void obtenerInfo(){
+    public String obtenerInfo(){
         Nodo<E> ptr=L;
-        
+        String cad = "";
         while(ptr!=null){
-            System.out.print(ptr.getInfo()+"--> ");
+            cad = cad + ptr.getInfo() + "\n";
             ptr=ptr.getSiguiente();
         }
-        System.out.print("nulo");
+        return cad;
     }
     
     public int busquedaDNI(long dni) {

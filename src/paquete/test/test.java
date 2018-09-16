@@ -8,6 +8,7 @@ package paquete.test;
 import javax.swing.JOptionPane;
 import paquete.clases.ListaEnlPasajero;
 import paquete.clases.Pasajero;
+import paquete.clases.Vuelo;
 
 /**
  *
@@ -65,12 +66,17 @@ public class test {
         pj4.generarEdad();
         lista.agregarNuevoPasajero(pj4);
         
-        lista.obtenerInfo();
+        System.out.println(lista.obtenerInfo());
         System.out.println("\n");
         
         lista.eliminarDeLista(147475);
         
-        lista.obtenerInfo();
+        System.out.println(lista.obtenerInfo());
+        
+        System.out.println("----------------------");
+        
+        Vuelo vuelo1 = new Vuelo("N234", 100, lista);
+        System.out.println(vuelo1.obeneterInfoVuelo());
         
     }
     

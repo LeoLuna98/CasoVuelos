@@ -17,6 +17,7 @@ public class Vuelo {
     public Vuelo(String nomVuelo, int numAsientos) {
         this.nomVuelo = nomVuelo;
         this.numAsientos = numAsientos;
+        this.listaPasajeros = null;
     }
 
     public Vuelo(String nomVuelo, int numAsientos, ListaEnlPasajero listaPasajeros) {
@@ -47,6 +48,13 @@ public class Vuelo {
 
     public void setListaPasajeros(ListaEnlPasajero listaPasajeros) {
         this.listaPasajeros = listaPasajeros;
+    }
+    
+    public String obeneterInfoVuelo() {
+        String cad = "ID del vuelo: " + nomVuelo + 
+                "\nAsientos disponibles: " +numAsientos +
+                "\nPasajeros: \n" + listaPasajeros.obtenerInfo();
+        return cad;
     }
     
     
