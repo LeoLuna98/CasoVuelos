@@ -26,32 +26,35 @@ public class ListaEnlPasajero <E extends Pasajero> {
     // -MARK: Reglas de negocio:
     
     public void agregarNuevoPasajero(E pasajero) {
-        Nodo<E> nuevo=new Nodo<>();
-        nuevo.setInfo(pasajero);
-        nuevo.setSiguiente(null);
-        
-        if (L==null) {
+        int dniFlag = busquedaDNI(pasajero.getDni());
+        if (dniFlag == 0) {
+            Nodo<E> nuevo = new Nodo<>();
+            nuevo.setInfo(pasajero);
             nuevo.setSiguiente(null);
-            L = nuevo;  
-        } else {
-            Nodo<E> ptr = L;
-            if (pasajero.getDni() < ptr.getInfo().getDni()) {
-                insertarAlInicio(pasajero);
+
+            if (L == null) {
+                nuevo.setSiguiente(null);
+                L = nuevo;
             } else {
-                Nodo<E> aux = null;
-                int bandera = 0;
-                while (bandera == 0 && ptr.getSiguiente() != null) {
-                    aux = ptr.getSiguiente();
-                    if (pasajero.getDni() < aux.getInfo().getDni()) {
-                        ptr.setSiguiente(nuevo);
-                        nuevo.setSiguiente(aux);
-                        bandera = 1;
-                    } else {
-                        ptr = ptr.getSiguiente();
+                Nodo<E> ptr = L;
+                if (pasajero.getDni() < ptr.getInfo().getDni()) {
+                    insertarAlInicio(pasajero);
+                } else {
+                    Nodo<E> aux = null;
+                    int bandera = 0;
+                    while (bandera == 0 && ptr.getSiguiente() != null) {
+                        aux = ptr.getSiguiente();
+                        if (pasajero.getDni() < aux.getInfo().getDni()) {
+                            ptr.setSiguiente(nuevo);
+                            nuevo.setSiguiente(aux);
+                            bandera = 1;
+                        } else {
+                            ptr = ptr.getSiguiente();
+                        }
                     }
-                }
-                if (bandera == 0) {
-                    insertarAlFinal(pasajero);
+                    if (bandera == 0) {
+                        insertarAlFinal(pasajero);
+                    }
                 }
             }
         }

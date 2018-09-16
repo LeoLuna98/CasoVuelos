@@ -69,13 +69,22 @@ public class test {
         System.out.println(lista.obtenerInfo());
         System.out.println("\n");
         
-        lista.eliminarDeLista(147475);
+        //lista.eliminarDeLista(147475);
         
         System.out.println(lista.obtenerInfo());
         
         System.out.println("----------------------");
         
         Vuelo vuelo1 = new Vuelo("N234", 100, lista);
+        System.out.println(vuelo1.obeneterInfoVuelo());
+        
+        System.out.println("----------------------");
+        
+        Pasajero pj5 = new Pasajero("pepe", 9964);
+        pj5.generarEdad();
+        
+        vuelo1.agregarPasajeroAlVuelo(pj5);
+        
         System.out.println(vuelo1.obeneterInfoVuelo());
         
     }
