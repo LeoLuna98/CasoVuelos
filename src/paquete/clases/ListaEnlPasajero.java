@@ -10,10 +10,10 @@ package paquete.clases;
  * @author Leonardo
  * @param <E>
  */
-public class ListaE <E extends Pasajero> {
+public class ListaEnlPasajero <E extends Pasajero> {
     private Nodo<E> L;
     
-    public ListaE() {
+    public ListaEnlPasajero() {
         this.L=null;
     }
     
@@ -23,8 +23,40 @@ public class ListaE <E extends Pasajero> {
     
     // -MARK: Reglas de negocio:
     
-    public void insertarAlInicio(E item){
+    public void agregarNuevoPasajero(E pasajero) {
         Nodo<E> nuevo=new Nodo<>();
+        nuevo.setInfo(pasajero);
+        nuevo.setSiguiente(null);
+        
+        if (L==null) {
+            nuevo.setSiguiente(null);
+            L = nuevo;  
+        } else {
+            Nodo<E> ptr = L;
+            if (pasajero.getDni() < ptr.getInfo().getDni()) {
+                insertarAlInicio(pasajero);
+            } else {
+                Nodo<E> aux = null;
+                int bandera = 0;
+                while (bandera == 0 && ptr.getSiguiente() != null) {
+                    aux = ptr.getSiguiente();
+                    if (pasajero.getDni() < aux.getInfo().getDni()) {
+                        ptr.setSiguiente(nuevo);
+                        nuevo.setSiguiente(aux);
+                        bandera = 1;
+                    } else {
+                        ptr = ptr.getSiguiente();
+                    }
+                }
+                if (bandera == 0) {
+                    insertarAlFinal(pasajero);
+                }
+            }
+        }
+    }
+    
+    public void insertarAlInicio(E item){
+        Nodo<E> nuevo=new Nodo<E>();
         nuevo.setInfo(item);
         
         if(L==null){
