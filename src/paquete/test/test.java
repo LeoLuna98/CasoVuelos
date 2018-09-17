@@ -6,6 +6,7 @@
 package paquete.test;
 
 import javax.swing.JOptionPane;
+import paquete.clases.GestionVuelos;
 import paquete.clases.ListaEnlPasajero;
 import paquete.clases.Pasajero;
 import paquete.clases.Vuelo;
@@ -19,6 +20,7 @@ public class test {
     public static void main(String[] args) {
         
         ListaEnlPasajero<Pasajero> lista = new ListaEnlPasajero<>();
+        GestionVuelos obGE = new GestionVuelos();
         
         /*lista.obtenerInfo();
         
@@ -83,9 +85,19 @@ public class test {
         Pasajero pj5 = new Pasajero("pepe", 9964);
         pj5.generarEdad();
         
-        vuelo1.agregarPasajeroAlVuelo(pj5);
         
-        System.out.println(vuelo1.obeneterInfoVuelo());
+        Vuelo vuelo2 = new Vuelo(1234, 222);
+        Vuelo vuelo3 = new Vuelo(12434, 222);
+        Vuelo vuelo4 = new Vuelo(12354, 222);
+        
+        
+        vuelo1.agregarPasajeroAlVuelo(pj5);
+        obGE.agregarVuelo(vuelo1);
+        obGE.agregarVuelo(vuelo2);
+        obGE.agregarVuelo(vuelo3);
+        obGE.agregarVuelo(vuelo4);
+        obGE.verInfo();
+        
         
     }
     
