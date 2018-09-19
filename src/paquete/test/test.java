@@ -98,6 +98,10 @@ public class test {
         obGE.agregarVuelo(vuelo4);
         obGE.verInfo();
         
+        System.out.println("----------------------");
+        obGE.eliminarConReferencia(12434);
+        obGE.verInfo();
+        
         
     }
     

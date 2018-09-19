@@ -84,5 +84,17 @@ public class GestionVuelos {
         }
     }
     
+    public void eliminarConReferencia(int numVuelo) {
+        int pos = busquedaS(numVuelo);
+        if (pos == -1) {
+            JOptionPane.showMessageDialog(null, "Numero de vuelo no encontrado");
+        } else {
+            cantidadVuelos--;
+            for (int i = pos; i < cantidadVuelos; i++) {
+                arreglo[i] = arreglo[i+1];
+            }
+        }
+    }
+    
     
 }
