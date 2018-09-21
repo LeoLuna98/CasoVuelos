@@ -99,7 +99,7 @@ public class test {
         obGE.verInfo();
         
         System.out.println("----------------------");
-        obGE.eliminarConReferencia(12434);
+        obGE.eliminarConReferencia(124346546);
         obGE.verInfo();
         
         
