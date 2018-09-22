@@ -102,6 +102,8 @@ public class test {
         obGE.eliminarConReferencia(124);
         obGE.verInfo();
         
+        System.out.println("esta es una prueba de git");
+        
         
     }
     
