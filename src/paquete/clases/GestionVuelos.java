@@ -36,7 +36,7 @@ public class GestionVuelos {
         this.cantidadVuelos = cantidadVuelos;
     }
     
-    public void agregarVuelo(Vuelo vuelo) {
+    public boolean agregarVuelo(Vuelo vuelo) {
         if (cantidadVuelos < 100) {
             int pos = busquedaS(vuelo.getNumVuelo());
             if (pos == -1) {
@@ -57,11 +57,14 @@ public class GestionVuelos {
                     arreglo[cantidadVuelos] = vuelo;
                 }
                 cantidadVuelos += 1;
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "El vuelo ya existe");
+                return false;
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay espacio disponible para más vuelos");
+            return false;
         }
     }
     
@@ -80,7 +83,8 @@ public class GestionVuelos {
     
     public void verInfo() {
         for (int i = 0; i < cantidadVuelos; i++) {
-            System.out.println(arreglo[i].getNumVuelo());
+            System.out.println("Numero de vuelo: " + arreglo[i].getNumVuelo() +  
+                    "\nNúmero de asientos: " + arreglo[i].getNumAsientos());
         }
     }
     

@@ -5,6 +5,8 @@
  */
 package paquete.clases;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leonardo
@@ -17,15 +19,8 @@ public class Vuelo {
     public Vuelo(int numVuelo, int numAsientos) {
         this.numVuelo = numVuelo;
         this.numAsientos = numAsientos;
-        this.listaPasajeros = null;
     }
-
-    public Vuelo(int numVuelo, int numAsientos, ListaEnlPasajero listaPasajeros) {
-        this.numVuelo = numVuelo;
-        this.numAsientos = numAsientos;
-        this.listaPasajeros = listaPasajeros;
-    }
-
+   
     public int getNumVuelo() {
         return numVuelo;
     }
@@ -58,7 +53,12 @@ public class Vuelo {
     }  
     
     public void agregarPasajeroAlVuelo(Pasajero pasajero) {
-        listaPasajeros.agregarNuevoPasajero(pasajero);
-        numAsientos--;
+        if (numAsientos!=0) {
+            listaPasajeros.agregarNuevoPasajero(pasajero);
+            numAsientos--;
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay asientos disponibles");
+        }
+        
     }
 }
