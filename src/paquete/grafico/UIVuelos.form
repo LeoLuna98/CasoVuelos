@@ -26,11 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="CreateFlightButton" min="-2" pref="119" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="FlightSeatsLabel" max="32767" attributes="0"/>
                           <Component id="FlightNameLabel" max="32767" attributes="0"/>
@@ -40,34 +36,70 @@
                           <Component id="FlightSeatsNumberComboBox" min="-2" pref="70" max="-2" attributes="0"/>
                           <Component id="FlightNumberTextField" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
-                      <Component id="SelectFlightLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="FlightListComboBox" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="CreateFlightButton" min="-2" pref="120" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="PassengerNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="SelectFlightLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="PassengerDNILabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="PassengerNameTextField" max="32767" attributes="0"/>
+                          <Component id="PassengerDNITextField" alignment="0" pref="174" max="32767" attributes="0"/>
+                          <Component id="FlightListComboBox" alignment="0" min="-2" pref="97" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="AddPassengerButton" min="-2" pref="136" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="FlightNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="FlightNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="FlightListComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="SelectFlightLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="FlightNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FlightNumberTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="SelectFlightLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="FlightListComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="FlightSeatsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="FlightSeatsNumberComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PassengerNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PassengerNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="CreateFlightButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="250" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="CreateFlightButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="PassengerDNILabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="PassengerDNITextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="AddPassengerButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="207" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,6 +163,34 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Seleccione vuelo:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="PassengerNameLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nombre del pasajero:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="PassengerNameTextField">
+    </Component>
+    <Component class="javax.swing.JLabel" name="PassengerDNILabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DNI del pasajero:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="PassengerDNITextField">
+    </Component>
+    <Component class="javax.swing.JButton" name="AddPassengerButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;adir pasajero"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddPassengerButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

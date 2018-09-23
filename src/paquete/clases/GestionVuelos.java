@@ -98,7 +98,5 @@ public class GestionVuelos {
                 arreglo[i] = arreglo[i+1];
             }
         }
-    }
-    
-    
+    }    
 }

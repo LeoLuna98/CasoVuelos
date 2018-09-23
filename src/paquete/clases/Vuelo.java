@@ -19,6 +19,7 @@ public class Vuelo {
     public Vuelo(int numVuelo, int numAsientos) {
         this.numVuelo = numVuelo;
         this.numAsientos = numAsientos;
+        listaPasajeros = new ListaEnlPasajero();
     }
    
     public int getNumVuelo() {
@@ -54,6 +55,7 @@ public class Vuelo {
     
     public void agregarPasajeroAlVuelo(Pasajero pasajero) {
         if (numAsientos!=0) {
+            pasajero.generarEdad();
             listaPasajeros.agregarNuevoPasajero(pasajero);
             numAsientos--;
         } else {

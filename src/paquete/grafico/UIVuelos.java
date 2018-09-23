@@ -7,6 +7,7 @@ package paquete.grafico;
 
 import javax.swing.JOptionPane;
 import paquete.clases.GestionVuelos;
+import paquete.clases.Pasajero;
 import paquete.clases.Vuelo;
 
 /**
@@ -41,6 +42,11 @@ public class UIVuelos extends javax.swing.JFrame {
         CreateFlightButton = new javax.swing.JButton();
         FlightListComboBox = new javax.swing.JComboBox<>();
         SelectFlightLabel = new javax.swing.JLabel();
+        PassengerNameLabel = new javax.swing.JLabel();
+        PassengerNameTextField = new javax.swing.JTextField();
+        PassengerDNILabel = new javax.swing.JLabel();
+        PassengerDNITextField = new javax.swing.JTextField();
+        AddPassengerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +68,19 @@ public class UIVuelos extends javax.swing.JFrame {
         SelectFlightLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SelectFlightLabel.setText("Seleccione vuelo:");
 
+        PassengerNameLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        PassengerNameLabel.setText("Nombre del pasajero:");
+
+        PassengerDNILabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        PassengerDNILabel.setText("DNI del pasajero:");
+
+        AddPassengerButton.setText("Añadir pasajero");
+        AddPassengerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddPassengerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,38 +89,60 @@ public class UIVuelos extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CreateFlightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(FlightSeatsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(FlightNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(FlightSeatsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(FlightNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(SelectFlightLabel)
+                            .addComponent(FlightNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(CreateFlightButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(103, 103, 103)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PassengerNameLabel)
+                            .addComponent(SelectFlightLabel)
+                            .addComponent(PassengerDNILabel))
                         .addGap(18, 18, 18)
-                        .addComponent(FlightListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(PassengerNameTextField)
+                            .addComponent(PassengerDNITextField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(FlightListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(AddPassengerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FlightNameLabel)
-                    .addComponent(FlightNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FlightListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectFlightLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FlightNameLabel)
+                            .addComponent(FlightNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SelectFlightLabel)
+                            .addComponent(FlightListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FlightSeatsLabel)
-                    .addComponent(FlightSeatsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FlightSeatsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PassengerNameLabel)
+                    .addComponent(PassengerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CreateFlightButton)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreateFlightButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PassengerDNILabel)
+                            .addComponent(PassengerDNITextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AddPassengerButton)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,14 +157,43 @@ public class UIVuelos extends javax.swing.JFrame {
             //Añadir vuelo a FlightListComboBox:
             if (objGE.agregarVuelo(objVuelo)) {
                 FlightListComboBox.addItem(FlightNumberTextField.getText());
-            }            
+            }
+            
+            //Limpiar campos
+            FlightNumberTextField.setText("");
             
             objGE.verInfo();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese número de vuelo válido, por favor.");
+            //Limpiar campos
+            FlightNumberTextField.setText("");
         }
         
     }//GEN-LAST:event_CreateFlightButtonActionPerformed
+
+    private void AddPassengerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPassengerButtonActionPerformed
+        try {
+            int vueloSeleccionado = Integer.parseInt((String) FlightListComboBox.getSelectedItem());
+            int pos = objGE.busquedaS(vueloSeleccionado);
+            String nombre = PassengerNameTextField.getText();
+            long dni = Long.decode(PassengerDNITextField.getText());
+            Pasajero objPasajero = new Pasajero(nombre, dni);
+            objGE.getArreglo()[pos].agregarPasajeroAlVuelo(objPasajero);
+            System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
+            
+            //Limpiar campos
+            PassengerDNITextField.setText("");
+            PassengerNameTextField.setText("");
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese DNI correcto, por favor.");
+            
+            //Limpiar campos
+            PassengerDNITextField.setText("");
+            PassengerNameTextField.setText("");
+        }
+
+    }//GEN-LAST:event_AddPassengerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,12 +231,17 @@ public class UIVuelos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddPassengerButton;
     private javax.swing.JButton CreateFlightButton;
     private javax.swing.JComboBox<String> FlightListComboBox;
     private javax.swing.JLabel FlightNameLabel;
     private javax.swing.JTextField FlightNumberTextField;
     private javax.swing.JLabel FlightSeatsLabel;
     private javax.swing.JComboBox<String> FlightSeatsNumberComboBox;
+    private javax.swing.JLabel PassengerDNILabel;
+    private javax.swing.JTextField PassengerDNITextField;
+    private javax.swing.JLabel PassengerNameLabel;
+    private javax.swing.JTextField PassengerNameTextField;
     private javax.swing.JLabel SelectFlightLabel;
     // End of variables declaration//GEN-END:variables
 }
