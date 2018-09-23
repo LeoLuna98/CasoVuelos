@@ -67,6 +67,10 @@ public class Vuelo {
         } else {
             JOptionPane.showMessageDialog(null, "No hay asientos disponibles");
         }
-        
+    }
+    
+    public void eliminarPasajeroDelVuelo(long dni) {
+        listaPasajeros.eliminarDeLista(dni);
+        numAsientos++;
     }
 }

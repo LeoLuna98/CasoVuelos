@@ -73,6 +73,15 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightListComboBox.setForeground(new java.awt.Color(0, 0, 0));
         FlightListComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         FlightListComboBox.setBorder(null);
+        FlightListComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                FlightListComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+        });
         FlightListComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FlightListComboBoxActionPerformed(evt);
@@ -190,6 +199,15 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightSeatsNumberComboBox.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         FlightSeatsNumberComboBox.setForeground(new java.awt.Color(0, 0, 0));
         FlightSeatsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "150", "200", " " }));
+        FlightSeatsNumberComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible(evt);
+            }
+        });
         jPanel1.add(FlightSeatsNumberComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 70, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
@@ -236,6 +254,9 @@ public class UIVuelos extends javax.swing.JFrame {
             objGE.getArreglo()[pos].agregarPasajeroAlVuelo(objPasajero);
             System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
             
+            String cad = objGE.getArreglo()[pos].obeneterInfoVueloSinPasajeros();
+            FlightInfoTextPane.setText(cad);
+            
             //Limpiar campos
             PassengerDNITextField.setText("Ingrese DNI");
             PassengerNameTextField.setText("Ingrese nombre");
@@ -262,17 +283,47 @@ public class UIVuelos extends javax.swing.JFrame {
     }//GEN-LAST:event_FlightListComboBoxActionPerformed
 
     private void PassengerDNITextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassengerDNITextFieldMousePressed
-        PassengerDNITextField.setText("");
+        setDefaulFields();
+        if ("Ingrese DNI".equals(PassengerDNITextField.getText())) { 
+            PassengerDNITextField.setText("");
+        }
     }//GEN-LAST:event_PassengerDNITextFieldMousePressed
 
     private void PassengerNameTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassengerNameTextFieldMousePressed
-        PassengerNameTextField.setText("");        
+        setDefaulFields();
+        if ("Ingrese nombre".equals(PassengerNameTextField.getText())) { 
+            PassengerNameTextField.setText("");
+        }     
     }//GEN-LAST:event_PassengerNameTextFieldMousePressed
 
     private void FlightNumberTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FlightNumberTextFieldMousePressed
-        FlightNumberTextField.setText(""); 
+        setDefaulFields();
+        if ("Ingrese número".equals(FlightNumberTextField.getText())) { 
+            FlightNumberTextField.setText("");
+        }
     }//GEN-LAST:event_FlightNumberTextFieldMousePressed
 
+    private void FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+        setDefaulFields();
+    }//GEN-LAST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
+
+    private void FlightListComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightListComboBoxPopupMenuWillBecomeVisible
+        setDefaulFields();
+    }//GEN-LAST:event_FlightListComboBoxPopupMenuWillBecomeVisible
+
+    private void setDefaulFields() {
+        if ("".equals(FlightNumberTextField.getText())) {
+            FlightNumberTextField.setText("Ingrese número");
+        }
+        if ("".equals(PassengerNameTextField.getText())) {
+            PassengerNameTextField.setText("Ingrese nombre");
+        }
+        if ("".equals(PassengerDNITextField.getText())) {
+            PassengerDNITextField.setText("Ingrese DNI");
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
