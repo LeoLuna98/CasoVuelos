@@ -65,6 +65,8 @@ public class UIVuelos extends javax.swing.JFrame {
             }
         });
 
+        FlightListComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
         SelectFlightLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SelectFlightLabel.setText("Seleccione vuelo:");
 
@@ -186,7 +188,7 @@ public class UIVuelos extends javax.swing.JFrame {
             PassengerNameTextField.setText("");
             
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ingrese DNI correcto, por favor.");
+            JOptionPane.showMessageDialog(null, "Ingrese valores correctos, por favor.");
             
             //Limpiar campos
             PassengerDNITextField.setText("");
