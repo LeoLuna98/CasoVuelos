@@ -239,7 +239,6 @@ public class UIVuelos extends javax.swing.JFrame {
             //Limpiar campos
             PassengerDNITextField.setText("Ingrese DNI");
             PassengerNameTextField.setText("Ingrese nombre");
-            FlightListComboBox.setSelectedIndex(0);
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores correctos, por favor.");
@@ -247,7 +246,6 @@ public class UIVuelos extends javax.swing.JFrame {
             //Limpiar campos
             PassengerDNITextField.setText("Ingrese DNI");
             PassengerNameTextField.setText("Ingrese nombre");
-            FlightListComboBox.setSelectedIndex(0);
         }
 
     }//GEN-LAST:event_AddPassengerButtonActionPerformed
