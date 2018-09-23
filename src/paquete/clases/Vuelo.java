@@ -51,6 +51,12 @@ public class Vuelo {
                 "\nAsientos disponibles: " +numAsientos +
                 "\nPasajeros: \n" + listaPasajeros.obtenerInfo();
         return cad;
+    }
+    
+    public String obeneterInfoVueloSinPasajeros() {
+        String cad = "Número del vuelo: N" + numVuelo + 
+                "\nAsientos disponibles: " +numAsientos;
+        return cad;
     }  
     
     public void agregarPasajeroAlVuelo(Pasajero pasajero) {

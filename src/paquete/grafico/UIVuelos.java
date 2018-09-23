@@ -47,8 +47,12 @@ public class UIVuelos extends javax.swing.JFrame {
         PassengerDNILabel = new javax.swing.JLabel();
         PassengerDNITextField = new javax.swing.JTextField();
         AddPassengerButton = new javax.swing.JButton();
+        FlightInfoLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        FlightInfoTextPane = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema de reserva de vuelos");
 
         FlightSeatsLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         FlightSeatsLabel.setText("Número de asientos:");
@@ -66,6 +70,11 @@ public class UIVuelos extends javax.swing.JFrame {
         });
 
         FlightListComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        FlightListComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FlightListComboBoxActionPerformed(evt);
+            }
+        });
 
         SelectFlightLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         SelectFlightLabel.setText("Seleccione vuelo:");
@@ -82,6 +91,12 @@ public class UIVuelos extends javax.swing.JFrame {
                 AddPassengerButtonActionPerformed(evt);
             }
         });
+
+        FlightInfoLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        FlightInfoLabel.setText("Información del vuelo:");
+
+        FlightInfoTextPane.setEditable(false);
+        jScrollPane2.setViewportView(FlightInfoTextPane);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +126,9 @@ public class UIVuelos extends javax.swing.JFrame {
                             .addComponent(PassengerNameTextField)
                             .addComponent(PassengerDNITextField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                             .addComponent(FlightListComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(AddPassengerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AddPassengerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FlightInfoLabel)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -144,7 +161,11 @@ public class UIVuelos extends javax.swing.JFrame {
                             .addComponent(PassengerDNITextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(AddPassengerButton)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(FlightInfoLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         pack();
@@ -197,6 +218,13 @@ public class UIVuelos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_AddPassengerButtonActionPerformed
 
+    private void FlightListComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FlightListComboBoxActionPerformed
+        int vueloSeleccionado = Integer.parseInt((String) FlightListComboBox.getSelectedItem());
+        int pos = objGE.busquedaS(vueloSeleccionado);
+        String cad = objGE.getArreglo()[pos].obeneterInfoVueloSinPasajeros();
+        FlightInfoTextPane.setText(cad);
+    }//GEN-LAST:event_FlightListComboBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -235,6 +263,8 @@ public class UIVuelos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddPassengerButton;
     private javax.swing.JButton CreateFlightButton;
+    private javax.swing.JLabel FlightInfoLabel;
+    private javax.swing.JTextPane FlightInfoTextPane;
     private javax.swing.JComboBox<String> FlightListComboBox;
     private javax.swing.JLabel FlightNameLabel;
     private javax.swing.JTextField FlightNumberTextField;
@@ -245,5 +275,6 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JLabel PassengerNameLabel;
     private javax.swing.JTextField PassengerNameTextField;
     private javax.swing.JLabel SelectFlightLabel;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

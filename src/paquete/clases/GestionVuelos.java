@@ -81,11 +81,13 @@ public class GestionVuelos {
         return pos;
     }
     
-    public void verInfo() {
+    public String verInfo() {
+        String cad = "";
         for (int i = 0; i < cantidadVuelos; i++) {
-            System.out.println("Numero de vuelo: " + arreglo[i].getNumVuelo() +  
-                    "\nNúmero de asientos: " + arreglo[i].getNumAsientos());
+            cad = cad + "Numero de vuelo: N" + arreglo[i].getNumVuelo() +  
+                    "\nNúmero de asientos disponibles: " + arreglo[i].getNumAsientos();
         }
+        return cad;
     }
     
     public void eliminarConReferencia(int numVuelo) {
