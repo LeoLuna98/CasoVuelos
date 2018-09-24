@@ -6,6 +6,7 @@
 package paquete.grafico;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import paquete.clases.GestionVuelos;
 import paquete.clases.Pasajero;
 import paquete.clases.Vuelo;
@@ -20,10 +21,18 @@ public class UIVuelos extends javax.swing.JFrame {
      * Creates new form UIVuelos
      */
     GestionVuelos objGE;
+    DefaultTableModel modelo;
     
     public UIVuelos() {
         initComponents();
         objGE = new GestionVuelos();
+        
+        //Inicializar modelo
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Nombre");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Edad");
+        PassengerTable.setModel(modelo);
     }
 
     /**
@@ -60,9 +69,13 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightNumberTextField = new javax.swing.JTextField();
         FlightSeatsNumberComboBox = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        PassengerTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de reserva de vuelos");
+        setLocationByPlatform(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         AddPassengerPanel.setBackground(new java.awt.Color(225, 225, 225));
@@ -71,7 +84,7 @@ public class UIVuelos extends javax.swing.JFrame {
         SelectFlightLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         SelectFlightLabel.setForeground(new java.awt.Color(0, 0, 0));
         SelectFlightLabel.setText("Seleccione vuelo:");
-        AddPassengerPanel.add(SelectFlightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        AddPassengerPanel.add(SelectFlightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         FlightListComboBox.setBackground(new java.awt.Color(255, 255, 255));
         FlightListComboBox.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -92,12 +105,12 @@ public class UIVuelos extends javax.swing.JFrame {
                 FlightListComboBoxActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(FlightListComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, -1));
+        AddPassengerPanel.add(FlightListComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 120, -1));
 
         PassengerNameLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerNameLabel.setForeground(new java.awt.Color(0, 0, 0));
         PassengerNameLabel.setText("Ingrese DNI del pasajero a eliminar:");
-        AddPassengerPanel.add(PassengerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
+        AddPassengerPanel.add(PassengerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, -1));
 
         PassengerNameTextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerNameTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -109,12 +122,12 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerNameTextFieldMousePressed(evt);
             }
         });
-        AddPassengerPanel.add(PassengerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 174, -1));
+        AddPassengerPanel.add(PassengerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 174, -1));
 
         PassengerDNILabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerDNILabel.setForeground(new java.awt.Color(0, 0, 0));
         PassengerDNILabel.setText("DNI del pasajero:");
-        AddPassengerPanel.add(PassengerDNILabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        AddPassengerPanel.add(PassengerDNILabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         PassengerDNITextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerDNITextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -126,7 +139,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerDNITextFieldMousePressed(evt);
             }
         });
-        AddPassengerPanel.add(PassengerDNITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 174, -1));
+        AddPassengerPanel.add(PassengerDNITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 174, -1));
 
         AddPassengerButton.setBackground(new java.awt.Color(255, 255, 255));
         AddPassengerButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -138,7 +151,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 AddPassengerButtonActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(AddPassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 136, -1));
+        AddPassengerPanel.add(AddPassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 136, -1));
 
         jScrollPane2.setBackground(new java.awt.Color(232, 228, 224));
 
@@ -148,25 +161,25 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightInfoTextPane.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(FlightInfoTextPane);
 
-        AddPassengerPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 30, 216, 49));
+        AddPassengerPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 216, 49));
 
         FlightInfoLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         FlightInfoLabel.setForeground(new java.awt.Color(0, 0, 0));
         FlightInfoLabel.setText("Información del vuelo:");
-        AddPassengerPanel.add(FlightInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, -1));
+        AddPassengerPanel.add(FlightInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 180, 10));
+        AddPassengerPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 180, 10));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 180, 10));
+        AddPassengerPanel.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 180, 10));
 
         PassengerNameLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerNameLabel1.setForeground(new java.awt.Color(0, 0, 0));
         PassengerNameLabel1.setText("Nombre del pasajero:");
-        AddPassengerPanel.add(PassengerNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        AddPassengerPanel.add(PassengerNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         PassengerDNIDeleteTextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerDNIDeleteTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -179,11 +192,11 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerDNIDeleteTextFieldMousePressed(evt);
             }
         });
-        AddPassengerPanel.add(PassengerDNIDeleteTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 180, -1));
+        AddPassengerPanel.add(PassengerDNIDeleteTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 180, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 180, 10));
+        AddPassengerPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, 10));
 
         DeletePassengerButton.setBackground(new java.awt.Color(255, 255, 255));
         DeletePassengerButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -194,7 +207,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 DeletePassengerButtonActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(DeletePassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, 140, -1));
+        AddPassengerPanel.add(DeletePassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 140, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -205,9 +218,9 @@ public class UIVuelos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
+        AddPassengerPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
 
-        getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 510, 240));
+        getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 510, 270));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -231,7 +244,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 CreateFlightButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(CreateFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 120, -1));
+        jPanel1.add(CreateFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 120, -1));
 
         FlightNumberTextField.setBackground(new java.awt.Color(0, 153, 255));
         FlightNumberTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -265,7 +278,28 @@ public class UIVuelos extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 120, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 270));
+
+        PassengerTable.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        PassengerTable.setForeground(new java.awt.Color(51, 51, 51));
+        PassengerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        PassengerTable.setGridColor(new java.awt.Color(255, 255, 255));
+        PassengerTable.setRowHeight(20);
+        PassengerTable.setSelectionBackground(new java.awt.Color(225, 225, 225));
+        PassengerTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(PassengerTable);
+
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 800, 230));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -426,13 +460,15 @@ public class UIVuelos extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -474,10 +510,12 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JLabel PassengerNameLabel;
     private javax.swing.JLabel PassengerNameLabel1;
     private javax.swing.JTextField PassengerNameTextField;
+    private javax.swing.JTable PassengerTable;
     private javax.swing.JLabel SelectFlightLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
