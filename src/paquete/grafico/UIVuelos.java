@@ -284,7 +284,6 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightNumberTextField.setBackground(new java.awt.Color(0, 153, 255));
         FlightNumberTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         FlightNumberTextField.setForeground(new java.awt.Color(255, 255, 255));
-        FlightNumberTextField.setText("Ingrese número");
         FlightNumberTextField.setBorder(null);
         FlightNumberTextField.setCaretColor(new java.awt.Color(51, 51, 51));
         FlightNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -508,6 +507,8 @@ public class UIVuelos extends javax.swing.JFrame {
             
             FlightListComboBox.setSelectedIndex(0);
             FlightListComboBox.removeItemAt(index);
+            modelo.setRowCount(0);
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Seleccione vuelo, por favor.");
         }
