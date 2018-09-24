@@ -8,6 +8,7 @@ package paquete.grafico;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import paquete.clases.GestionVuelos;
+import paquete.clases.Nodo;
 import paquete.clases.Pasajero;
 import paquete.clases.Vuelo;
 
@@ -89,7 +90,7 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightListComboBox.setBackground(new java.awt.Color(255, 255, 255));
         FlightListComboBox.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         FlightListComboBox.setForeground(new java.awt.Color(0, 0, 0));
-        FlightListComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        FlightListComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir vuelo" }));
         FlightListComboBox.setBorder(null);
         FlightListComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -340,6 +341,8 @@ public class UIVuelos extends javax.swing.JFrame {
             
             System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
             
+            actualizarTabla();
+            
             String cad = objGE.getArreglo()[pos].obeneterInfoVueloSinPasajeros();
             FlightInfoTextPane.setText(cad);
             System.out.println("--------------");
@@ -364,6 +367,7 @@ public class UIVuelos extends javax.swing.JFrame {
             int pos = objGE.busquedaS(vueloSeleccionado);
             String cad = objGE.getArreglo()[pos].obeneterInfoVueloSinPasajeros();
             FlightInfoTextPane.setText(cad);
+            actualizarTabla();
         } catch (Exception e) {
             FlightInfoTextPane.setText("");
         }        
@@ -413,6 +417,8 @@ public class UIVuelos extends javax.swing.JFrame {
             int pos = objGE.busquedaS(vueloSeleccionado);
 
             objGE.getArreglo()[pos].eliminarPasajeroDelVuelo(dni);
+            
+            actualizarTabla();
 
             System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
 
@@ -426,7 +432,7 @@ public class UIVuelos extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores correctos, por favor.");
             //Limpiar campos
-            PassengerDNIDeleteTextField.setText("Ingrese valores DNI");
+            PassengerDNIDeleteTextField.setText("Ingrese DNI");
         }
     }//GEN-LAST:event_DeletePassengerButtonActionPerformed
 
@@ -452,6 +458,24 @@ public class UIVuelos extends javax.swing.JFrame {
         }
         if ("".equals(PassengerDNIDeleteTextField.getText())){
             PassengerDNIDeleteTextField.setText("Ingrese DNI");
+        }
+    }
+    
+    private void actualizarTabla() {
+        try {
+            int vueloSeleccionado = Integer.parseInt((String) FlightListComboBox.getSelectedItem());
+            modelo.setRowCount(0);
+            int pos = objGE.busquedaS(vueloSeleccionado);
+            String dato[] = new String[3];
+            Nodo<Pasajero> ptr = objGE.getArreglo()[pos].getListaPasajeros().getL();
+            while(ptr!=null) {
+                dato[0] = ptr.getInfo().getNombre();
+                dato[1] = String.valueOf(ptr.getInfo().getDni());
+                dato[2] = String.valueOf(ptr.getInfo().getEdad());
+                modelo.addRow(dato);
+                ptr = ptr.getSiguiente();
+            }            
+        } catch (Exception e) {
         }
     }
     
