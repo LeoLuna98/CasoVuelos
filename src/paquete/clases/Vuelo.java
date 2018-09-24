@@ -62,15 +62,27 @@ public class Vuelo {
     public void agregarPasajeroAlVuelo(Pasajero pasajero) {
         if (numAsientos!=0) {
             pasajero.generarEdad();
-            listaPasajeros.agregarNuevoPasajero(pasajero);
-            numAsientos--;
+            if(listaPasajeros.agregarNuevoPasajero(pasajero)) {
+                numAsientos--;
+            }
         } else {
             JOptionPane.showMessageDialog(null, "No hay asientos disponibles");
         }
     }
     
     public void eliminarPasajeroDelVuelo(long dni) {
-        listaPasajeros.eliminarDeLista(dni);
-        numAsientos++;
+        if(listaPasajeros.eliminarDeLista(dni)) {
+            numAsientos++;
+        }
+    }
+    
+    public void verMayorEdadEnVuelo() {
+        Pasajero pasajero = listaPasajeros.mayorEdad();
+        if (pasajero != null) {
+            String cad = "Nombre: " + pasajero.getNombre()
+                    + "\nDNI: " + pasajero.getDni()
+                    + "\nEdad: " + pasajero.getEdad();
+            JOptionPane.showMessageDialog(null, cad);
+        }
     }
 }
