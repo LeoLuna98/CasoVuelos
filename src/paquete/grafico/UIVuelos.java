@@ -247,13 +247,13 @@ public class UIVuelos extends javax.swing.JFrame {
         DeleteFlightButton.setBackground(new java.awt.Color(255, 255, 255));
         DeleteFlightButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         DeleteFlightButton.setForeground(new java.awt.Color(0, 0, 0));
-        DeleteFlightButton.setText("Presionar para eliminar");
+        DeleteFlightButton.setText("Presionar para eliminar vuelo");
         DeleteFlightButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteFlightButtonActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(DeleteFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
+        AddPassengerPanel.add(DeleteFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 210, -1));
 
         getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 590, 300));
 
