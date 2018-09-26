@@ -122,9 +122,12 @@ public class UIVuelos extends javax.swing.JFrame {
         PassengerNameTextField.setForeground(new java.awt.Color(102, 102, 102));
         PassengerNameTextField.setText("Ingrese nombre");
         PassengerNameTextField.setBorder(null);
-        PassengerNameTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassengerNameTextFieldMousePressed(evt);
+        PassengerNameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PassengerNameTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PassengerNameTextFieldFocusLost(evt);
             }
         });
         AddPassengerPanel.add(PassengerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 174, -1));
@@ -139,9 +142,12 @@ public class UIVuelos extends javax.swing.JFrame {
         PassengerDNITextField.setForeground(new java.awt.Color(102, 102, 102));
         PassengerDNITextField.setText("Ingrese DNI");
         PassengerDNITextField.setBorder(null);
-        PassengerDNITextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassengerDNITextFieldMousePressed(evt);
+        PassengerDNITextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PassengerDNITextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PassengerDNITextFieldFocusLost(evt);
             }
         });
         AddPassengerPanel.add(PassengerDNITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 174, -1));
@@ -188,9 +194,12 @@ public class UIVuelos extends javax.swing.JFrame {
         PassengerDNIDeleteTextField.setText("Ingrese DNI");
         PassengerDNIDeleteTextField.setBorder(null);
         PassengerDNIDeleteTextField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        PassengerDNIDeleteTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                PassengerDNIDeleteTextFieldMousePressed(evt);
+        PassengerDNIDeleteTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                PassengerDNIDeleteTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PassengerDNIDeleteTextFieldFocusLost(evt);
             }
         });
         AddPassengerPanel.add(PassengerDNIDeleteTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 180, -1));
@@ -284,11 +293,15 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightNumberTextField.setBackground(new java.awt.Color(0, 153, 255));
         FlightNumberTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         FlightNumberTextField.setForeground(new java.awt.Color(255, 255, 255));
+        FlightNumberTextField.setText("Ingrese número");
         FlightNumberTextField.setBorder(null);
         FlightNumberTextField.setCaretColor(new java.awt.Color(51, 51, 51));
-        FlightNumberTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                FlightNumberTextFieldMousePressed(evt);
+        FlightNumberTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FlightNumberTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FlightNumberTextFieldFocusLost(evt);
             }
         });
         jPanel1.add(FlightNumberTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 120, -1));
@@ -412,42 +425,16 @@ public class UIVuelos extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_FlightListComboBoxActionPerformed
 
-    private void PassengerDNITextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassengerDNITextFieldMousePressed
-        setDefaulFields();
-        if ("Ingrese DNI".equals(PassengerDNITextField.getText())) { 
-            PassengerDNITextField.setText("");
-        }
-    }//GEN-LAST:event_PassengerDNITextFieldMousePressed
-
-    private void FlightNumberTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FlightNumberTextFieldMousePressed
-        setDefaulFields();
-        if ("Ingrese número".equals(FlightNumberTextField.getText())) { 
-            FlightNumberTextField.setText("");
-        }
-    }//GEN-LAST:event_FlightNumberTextFieldMousePressed
-
     private void FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
         // TODO add your handling code here:
-        setDefaulFields();
+        FlightNumberTextField.setText("Ingrese número");
     }//GEN-LAST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
 
     private void FlightListComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightListComboBoxPopupMenuWillBecomeVisible
-        setDefaulFields();
+        PassengerNameTextField.setText("Ingrese nombre");
+        PassengerDNITextField.setText("Ingrese DNI");
+        PassengerDNIDeleteTextField.setText("Ingrese DNI");
     }//GEN-LAST:event_FlightListComboBoxPopupMenuWillBecomeVisible
-
-    private void PassengerNameTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassengerNameTextFieldMousePressed
-        setDefaulFields();
-        if ("Ingrese nombre".equals(PassengerNameTextField.getText())) {
-            PassengerNameTextField.setText("");
-        }
-    }//GEN-LAST:event_PassengerNameTextFieldMousePressed
-
-    private void PassengerDNIDeleteTextFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PassengerDNIDeleteTextFieldMousePressed
-        setDefaulFields();
-        if ("Ingrese DNI".equals(PassengerDNIDeleteTextField.getText())) {
-            PassengerDNIDeleteTextField.setText("");
-        }        
-    }//GEN-LAST:event_PassengerDNIDeleteTextFieldMousePressed
 
     private void DeletePassengerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePassengerButtonActionPerformed
         try {
@@ -514,20 +501,53 @@ public class UIVuelos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DeleteFlightButtonActionPerformed
 
-    private void setDefaulFields() {
-        if ("".equals(FlightNumberTextField.getText())) {
+    private void FlightNumberTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FlightNumberTextFieldFocusGained
+        if ("Ingrese número".equals(FlightNumberTextField.getText())) { 
+            FlightNumberTextField.setText("");
+        }
+    }//GEN-LAST:event_FlightNumberTextFieldFocusGained
+
+    private void FlightNumberTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FlightNumberTextFieldFocusLost
+        if ("".equals(FlightNumberTextField.getText())) { 
             FlightNumberTextField.setText("Ingrese número");
         }
-        if ("".equals(PassengerNameTextField.getText())) {
+    }//GEN-LAST:event_FlightNumberTextFieldFocusLost
+
+    private void PassengerNameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerNameTextFieldFocusGained
+        if ("Ingrese nombre".equals(PassengerNameTextField.getText())) { 
+            PassengerNameTextField.setText("");
+        }
+    }//GEN-LAST:event_PassengerNameTextFieldFocusGained
+
+    private void PassengerNameTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerNameTextFieldFocusLost
+        if ("".equals(PassengerNameTextField.getText())) { 
             PassengerNameTextField.setText("Ingrese nombre");
         }
-        if ("".equals(PassengerDNITextField.getText())) {
+    }//GEN-LAST:event_PassengerNameTextFieldFocusLost
+
+    private void PassengerDNITextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerDNITextFieldFocusGained
+        if ("Ingrese DNI".equals(PassengerDNITextField.getText())) { 
+            PassengerDNITextField.setText("");
+        }
+    }//GEN-LAST:event_PassengerDNITextFieldFocusGained
+
+    private void PassengerDNITextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerDNITextFieldFocusLost
+        if ("".equals(PassengerDNITextField.getText())) { 
             PassengerDNITextField.setText("Ingrese DNI");
         }
-        if ("".equals(PassengerDNIDeleteTextField.getText())){
+    }//GEN-LAST:event_PassengerDNITextFieldFocusLost
+
+    private void PassengerDNIDeleteTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerDNIDeleteTextFieldFocusGained
+        if ("Ingrese DNI".equals(PassengerDNIDeleteTextField.getText())) { 
+            PassengerDNIDeleteTextField.setText("");
+        }
+    }//GEN-LAST:event_PassengerDNIDeleteTextFieldFocusGained
+
+    private void PassengerDNIDeleteTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PassengerDNIDeleteTextFieldFocusLost
+        if ("".equals(PassengerDNIDeleteTextField.getText())) { 
             PassengerDNIDeleteTextField.setText("Ingrese DNI");
         }
-    }
+    }//GEN-LAST:event_PassengerDNIDeleteTextFieldFocusLost
     
     private void actualizarTabla() {
         try {
