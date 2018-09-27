@@ -468,15 +468,19 @@ public class UIVuelos extends javax.swing.JFrame {
     private void DeleteFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteFlightButtonActionPerformed
         // TODO add your handling code here:
         try {
-            int numVuelo = Integer.parseInt((String) FlightListComboBox.getSelectedItem());
-            objGE.eliminarConReferencia(numVuelo);
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog (null, "¿Eliminar vuelo?","Advertencia",dialogButton);
             
-            int index = FlightListComboBox.getSelectedIndex();
-            
-            FlightListComboBox.setSelectedIndex(0);
-            FlightListComboBox.removeItemAt(index);
-            modelo.setRowCount(0);
-            
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                int numVuelo = Integer.parseInt((String) FlightListComboBox.getSelectedItem());
+                objGE.eliminarConReferencia(numVuelo);
+
+                int index = FlightListComboBox.getSelectedIndex();
+
+                FlightListComboBox.setSelectedIndex(0);
+                FlightListComboBox.removeItemAt(index);
+                modelo.setRowCount(0);
+            }            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Seleccione vuelo, por favor.");
         }
