@@ -36,7 +36,7 @@ public class GestionVuelos {
         this.cantidadVuelos = cantidadVuelos;
     }
     
-    public void agregarVuelo(Vuelo vuelo) {
+    public boolean agregarVuelo(Vuelo vuelo) {
         if (cantidadVuelos < 100) {
             int pos = busquedaS(vuelo.getNumVuelo());
             if (pos == -1) {
@@ -57,11 +57,14 @@ public class GestionVuelos {
                     arreglo[cantidadVuelos] = vuelo;
                 }
                 cantidadVuelos += 1;
+                return true;
             } else {
                 JOptionPane.showMessageDialog(null, "El vuelo ya existe");
+                return false;
             }
         } else {
             JOptionPane.showMessageDialog(null, "No hay espacio disponible para más vuelos");
+            return false;
         }
     }
     
@@ -78,10 +81,13 @@ public class GestionVuelos {
         return pos;
     }
     
-    public void verInfo() {
+    public String verInfo() {
+        String cad = "";
         for (int i = 0; i < cantidadVuelos; i++) {
-            System.out.println(arreglo[i].getNumVuelo());
+            cad = cad + "Numero de vuelo: N" + arreglo[i].getNumVuelo() +  
+                    "\nNúmero de asientos disponibles: " + arreglo[i].getNumAsientos();
         }
+        return cad;
     }
     
     public void eliminarConReferencia(int numVuelo) {
@@ -94,7 +100,5 @@ public class GestionVuelos {
                 arreglo[i] = arreglo[i+1];
             }
         }
-    }
-    
-    
+    }    
 }

@@ -25,7 +25,8 @@ public class ListaEnlPasajero <E extends Pasajero> {
     
     // -MARK: Reglas de negocio:
     
-    public void agregarNuevoPasajero(E pasajero) {
+    public boolean agregarNuevoPasajero(E pasajero) {
+        boolean estado = true;
         int dniFlag = busquedaDNI(pasajero.getDni());
         if (dniFlag == 0) {
             Nodo<E> nuevo = new Nodo<>();
@@ -57,7 +58,10 @@ public class ListaEnlPasajero <E extends Pasajero> {
                     }
                 }
             }
+        } else {
+            estado = false;
         }
+        return estado;
     }
     
     public void insertarAlInicio(E item){
@@ -135,7 +139,8 @@ public class ListaEnlPasajero <E extends Pasajero> {
         }
     }
     
-    public void eliminarDeLista(long dni) {
+    public boolean eliminarDeLista(long dni) {
+        boolean estado = true;
         if (L != null) {
             Nodo<E> ptr = L;
             if (ptr.getInfo().getDni() == dni) {
@@ -154,10 +159,13 @@ public class ListaEnlPasajero <E extends Pasajero> {
                 }
                 if (bandera == 0) {
                     JOptionPane.showMessageDialog(null, "DNI no encontrado, ingrese otro");
+                    estado = false;
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Lista vacía, no se puede eliminar elemento");
+            estado = false;
         }
+        return estado;
     }
 }
