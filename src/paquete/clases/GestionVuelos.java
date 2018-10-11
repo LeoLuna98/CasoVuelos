@@ -100,5 +100,9 @@ public class GestionVuelos {
                 arreglo[i] = arreglo[i+1];
             }
         }
-    }    
+    } 
+    
+    public void listaOrdenda(int pos) {
+        arreglo[pos].ObtenerListaOrdenada();
+    }
 }

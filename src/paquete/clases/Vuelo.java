@@ -85,4 +85,8 @@ public class Vuelo {
             JOptionPane.showMessageDialog(null, cad);
         }
     }
+    
+    public void ObtenerListaOrdenada() {
+        listaPasajeros.ordenarLista();
+    }
 }

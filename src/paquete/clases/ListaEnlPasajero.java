@@ -168,4 +168,54 @@ public class ListaEnlPasajero <E extends Pasajero> {
         }
         return estado;
     }
+    
+    public ListaEnlPasajero ordenarLista() {
+        if (L==null) {
+            JOptionPane.showMessageDialog(null, "Lista vacía, ingrese valores.");
+            return null;
+        } else {
+            ListaEnlPasajero<E> listaOrdenada = new ListaEnlPasajero<>();
+            Nodo<E> ptr = L;
+            while (ptr != null) {
+                Nodo<E> nuevo = new Nodo<>();
+                nuevo.setInfo(ptr.getInfo());
+                nuevo.setSiguiente(null);
+                if(listaOrdenada.L == null) {
+                    nuevo.setSiguiente(null);
+                    listaOrdenada.L = nuevo;
+                } else {
+                    Nodo<E> ptrOrd = listaOrdenada.L;
+                    if (ptr.getInfo().getNombre().compareToIgnoreCase(ptrOrd.getInfo().getNombre())<0) {
+                        listaOrdenada.insertarAlInicio(ptr.getInfo());
+                    } else {
+                        Nodo<E> aux = null;
+                        int bandera = 0;
+                        while (bandera == 0 &&  ptrOrd.getSiguiente() != null) {
+                            aux = ptrOrd.getSiguiente();
+                            if (ptr.getInfo().getNombre().compareToIgnoreCase(aux.getInfo().getNombre())<0) {
+                                ptrOrd.setSiguiente(nuevo);
+                                nuevo.setSiguiente(aux);
+                                bandera = 1;
+                            } else {
+                                ptrOrd = ptrOrd.getSiguiente();
+                            }
+                        }
+                        if (bandera==0) {
+                            listaOrdenada.insertarAlFinal(ptr.getInfo());
+                        }
+                    }
+                }
+                ptr = ptr.getSiguiente();
+            }
+            
+            System.out.println("-----------");
+            Nodo<E> ptrOrd = listaOrdenada.getL();
+            while (ptrOrd != null) {
+                System.out.println(ptrOrd.getInfo().getNombre());
+                ptrOrd = ptrOrd.getSiguiente();
+            }
+            System.out.println("---------------");
+            return listaOrdenada;
+        }
+    }
 }
