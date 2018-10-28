@@ -5,6 +5,7 @@
  */
 package paquete.grafico;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import paquete.clases.GestionVuelos;
@@ -23,9 +24,11 @@ public class UIVuelos extends javax.swing.JFrame {
      */
     GestionVuelos objGE;
     DefaultTableModel modelo;
+    DefaultTableModel modeloVuelos;
     
     public UIVuelos() {
         initComponents();
+        setIcon();
         objGE = new GestionVuelos();
         
         //Inicializar modelo
@@ -34,6 +37,13 @@ public class UIVuelos extends javax.swing.JFrame {
         modelo.addColumn("DNI");
         modelo.addColumn("Edad");
         PassengerTable.setModel(modelo);
+        
+        //Inicializar modelo tabla de vuelos
+        modeloVuelos = new DefaultTableModel();
+        modeloVuelos.addColumn("Número de vuelo");
+        modeloVuelos.addColumn("Destino");
+        modeloVuelos.addColumn("Asientos disponibles");
+        FlightTable.setModel(modeloVuelos);
     }
 
     /**
@@ -59,14 +69,12 @@ public class UIVuelos extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         PassengerNameLabel1 = new javax.swing.JLabel();
         PassengerDNIDeleteTextField = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
         DeletePassengerButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        jButton2 = new javax.swing.JButton();
         DeleteFlightButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         FlightNameLabel = new javax.swing.JLabel();
         FlightSeatsLabel = new javax.swing.JLabel();
@@ -75,8 +83,14 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightSeatsNumberComboBox = new javax.swing.JComboBox<>();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        FlightDestinationLabel = new javax.swing.JLabel();
+        FlightDestinationTextField = new javax.swing.JTextField();
+        jSeparator3 = new javax.swing.JSeparator();
+        SortFlightButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         PassengerTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        FlightTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de reserva de vuelos");
@@ -107,11 +121,11 @@ public class UIVuelos extends javax.swing.JFrame {
                 FlightListComboBoxActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(FlightListComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 120, -1));
+        AddPassengerPanel.add(FlightListComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
 
         PassengerNameLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerNameLabel.setText("Ingrese DNI del pasajero a eliminar:");
-        AddPassengerPanel.add(PassengerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
+        AddPassengerPanel.add(PassengerNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         PassengerNameTextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerNameTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -126,11 +140,11 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerNameTextFieldFocusLost(evt);
             }
         });
-        AddPassengerPanel.add(PassengerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 174, -1));
+        AddPassengerPanel.add(PassengerNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 174, -1));
 
         PassengerDNILabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerDNILabel.setText("DNI del pasajero:");
-        AddPassengerPanel.add(PassengerDNILabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        AddPassengerPanel.add(PassengerDNILabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
 
         PassengerDNITextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerDNITextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -145,7 +159,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerDNITextFieldFocusLost(evt);
             }
         });
-        AddPassengerPanel.add(PassengerDNITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 174, -1));
+        AddPassengerPanel.add(PassengerDNITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 174, -1));
 
         AddPassengerButton.setBackground(new java.awt.Color(255, 255, 255));
         AddPassengerButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -156,7 +170,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 AddPassengerButtonActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(AddPassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 136, -1));
+        AddPassengerPanel.add(AddPassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 136, -1));
 
         jScrollPane2.setBackground(new java.awt.Color(232, 228, 224));
 
@@ -166,19 +180,19 @@ public class UIVuelos extends javax.swing.JFrame {
         FlightInfoTextPane.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(FlightInfoTextPane);
 
-        AddPassengerPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 210, 40));
+        AddPassengerPanel.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 210, 50));
 
         FlightInfoLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         FlightInfoLabel.setText("Información del vuelo:");
-        AddPassengerPanel.add(FlightInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, -1, -1));
+        AddPassengerPanel.add(FlightInfoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 180, 10));
+        AddPassengerPanel.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 180, 10));
 
         PassengerNameLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         PassengerNameLabel1.setText("Nombre del pasajero:");
-        AddPassengerPanel.add(PassengerNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        AddPassengerPanel.add(PassengerNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         PassengerDNIDeleteTextField.setBackground(new java.awt.Color(225, 225, 225));
         PassengerDNIDeleteTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -194,12 +208,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 PassengerDNIDeleteTextFieldFocusLost(evt);
             }
         });
-        AddPassengerPanel.add(PassengerDNIDeleteTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, 180, -1));
-
-        jSeparator4.setBackground(new java.awt.Color(153, 153, 153));
-        jSeparator4.setForeground(new java.awt.Color(153, 153, 153));
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        AddPassengerPanel.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 140, 10, 140));
+        AddPassengerPanel.add(PassengerDNIDeleteTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 180, -1));
 
         DeletePassengerButton.setBackground(new java.awt.Color(255, 255, 255));
         DeletePassengerButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -209,7 +218,7 @@ public class UIVuelos extends javax.swing.JFrame {
                 DeletePassengerButtonActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(DeletePassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 140, -1));
+        AddPassengerPanel.add(DeletePassengerButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 140, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -219,28 +228,15 @@ public class UIVuelos extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        AddPassengerPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        jLabel2.setText("Paso 3. Gestione sus vuelos");
-        AddPassengerPanel.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        AddPassengerPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 180, 10));
+        AddPassengerPanel.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 180, 10));
 
         jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        AddPassengerPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 180, 10));
-
-        jButton2.setText("?");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        AddPassengerPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, -1, -1));
+        AddPassengerPanel.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 180, 10));
 
         DeleteFlightButton.setBackground(new java.awt.Color(255, 255, 255));
         DeleteFlightButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -252,9 +248,13 @@ public class UIVuelos extends javax.swing.JFrame {
         });
         AddPassengerPanel.add(DeleteFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 210, -1));
 
-        getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 590, 300));
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel3.setText("Paso 3. Gestione sus vuelos");
+        AddPassengerPanel.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
+        getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 270, 510));
+
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         FlightNameLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -263,7 +263,7 @@ public class UIVuelos extends javax.swing.JFrame {
 
         FlightSeatsLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         FlightSeatsLabel.setText("Número de asientos:");
-        jPanel1.add(FlightSeatsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        jPanel1.add(FlightSeatsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         CreateFlightButton.setBackground(new java.awt.Color(255, 255, 255));
         CreateFlightButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
@@ -273,11 +273,11 @@ public class UIVuelos extends javax.swing.JFrame {
                 CreateFlightButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(CreateFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 120, -1));
+        jPanel1.add(CreateFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, 120, -1));
 
-        FlightNumberTextField.setBackground(new java.awt.Color(0, 153, 255));
+        FlightNumberTextField.setBackground(new java.awt.Color(102, 204, 255));
         FlightNumberTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        FlightNumberTextField.setForeground(new java.awt.Color(255, 255, 255));
+        FlightNumberTextField.setForeground(new java.awt.Color(102, 102, 102));
         FlightNumberTextField.setText("Ingrese número");
         FlightNumberTextField.setBorder(null);
         FlightNumberTextField.setCaretColor(new java.awt.Color(51, 51, 51));
@@ -293,27 +293,51 @@ public class UIVuelos extends javax.swing.JFrame {
 
         FlightSeatsNumberComboBox.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         FlightSeatsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "100", "150", "200" }));
-        FlightSeatsNumberComboBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible(evt);
-            }
-        });
-        jPanel1.add(FlightSeatsNumberComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 70, -1));
+        jPanel1.add(FlightSeatsNumberComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 70, -1));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 120, 10));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("Paso 1. Cree sus vuelos");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 300));
+        FlightDestinationLabel.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        FlightDestinationLabel.setText("Destino del vuelo:");
+        jPanel1.add(FlightDestinationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        FlightDestinationTextField.setBackground(new java.awt.Color(102, 204, 255));
+        FlightDestinationTextField.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        FlightDestinationTextField.setForeground(new java.awt.Color(102, 102, 102));
+        FlightDestinationTextField.setText("Ingrese destino");
+        FlightDestinationTextField.setBorder(null);
+        FlightDestinationTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                FlightDestinationTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                FlightDestinationTextFieldFocusLost(evt);
+            }
+        });
+        jPanel1.add(FlightDestinationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 120, -1));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 120, 10));
+
+        SortFlightButton.setBackground(new java.awt.Color(255, 255, 255));
+        SortFlightButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        SortFlightButton.setText("Ordenar listado por destino");
+        SortFlightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SortFlightButtonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SortFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 310));
 
         PassengerTable.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         PassengerTable.setForeground(new java.awt.Color(51, 51, 51));
@@ -333,7 +357,21 @@ public class UIVuelos extends javax.swing.JFrame {
         PassengerTable.setSelectionBackground(new java.awt.Color(225, 225, 225));
         jScrollPane3.setViewportView(PassengerTable);
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 800, 200));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, 800, 510));
+
+        FlightTable.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        FlightTable.setForeground(new java.awt.Color(51, 51, 51));
+        FlightTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(FlightTable);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 800, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -342,23 +380,36 @@ public class UIVuelos extends javax.swing.JFrame {
         try {
             int numVuelo = Integer.parseInt(FlightNumberTextField.getText());
             int numAsientos = Integer.parseInt((String) FlightSeatsNumberComboBox.getSelectedItem());
-            Vuelo objVuelo = new Vuelo(numVuelo, numAsientos);
-            
-            //Añadir vuelo a FlightListComboBox:
-            if (objGE.agregarVuelo(objVuelo)) {
-                FlightListComboBox.addItem(FlightNumberTextField.getText());
-            }
-            
-            //Limpiar campos
-            FlightNumberTextField.setText("Ingrese número");
-            FlightSeatsNumberComboBox.setSelectedIndex(0);
-            
-            objGE.verInfo();
+            String destino = FlightDestinationTextField.getText();
+            if ("Ingrese destino".equals(destino)) {
+                JOptionPane.showMessageDialog(null, "Ingrese destino válido, por favor.");
+                //Limpiar campos
+                FlightNumberTextField.setText("Ingrese número");
+                FlightSeatsNumberComboBox.setSelectedIndex(0);
+                FlightDestinationTextField.setText("Ingrese destino");
+            } else {
+                Vuelo objVuelo = new Vuelo(numVuelo, numAsientos, destino);
+
+                //Añadir vuelo a FlightListComboBox:
+                if (objGE.agregarVuelo(objVuelo)) {
+                    FlightListComboBox.addItem(FlightNumberTextField.getText());
+                }
+
+                actualizarTablaVuelos();
+
+                //Limpiar campos
+                FlightNumberTextField.setText("Ingrese número");
+                FlightSeatsNumberComboBox.setSelectedIndex(0);
+                FlightDestinationTextField.setText("Ingrese destino");
+
+                objGE.verInfo();
+            }            
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese número de vuelo válido, por favor.");
             //Limpiar campos
             FlightNumberTextField.setText("Ingrese número");
             FlightSeatsNumberComboBox.setSelectedIndex(0);
+            FlightDestinationTextField.setText("Ingrese destino");
         }
         
     }//GEN-LAST:event_CreateFlightButtonActionPerformed
@@ -375,6 +426,7 @@ public class UIVuelos extends javax.swing.JFrame {
             System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
             
             actualizarTabla();
+            actualizarTablaVuelos();
             
             String cad = objGE.getArreglo()[pos].obeneterInfoVueloSinPasajeros();
             FlightInfoTextPane.setText(cad);
@@ -406,11 +458,6 @@ public class UIVuelos extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_FlightListComboBoxActionPerformed
 
-    private void FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-        FlightNumberTextField.setText("Ingrese número");
-    }//GEN-LAST:event_FlightSeatsNumberComboBoxPopupMenuWillBecomeVisible
-
     private void FlightListComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_FlightListComboBoxPopupMenuWillBecomeVisible
         PassengerNameTextField.setText("Ingrese nombre");
         PassengerDNITextField.setText("Ingrese DNI");
@@ -426,6 +473,7 @@ public class UIVuelos extends javax.swing.JFrame {
             objGE.getArreglo()[pos].eliminarPasajeroDelVuelo(dni);
             
             actualizarTabla();
+            actualizarTablaVuelos();
 
             System.out.println(objGE.getArreglo()[pos].obeneterInfoVuelo());
 
@@ -453,18 +501,6 @@ public class UIVuelos extends javax.swing.JFrame {
         }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        String cad = "La gestión de vuelos es muy sencilla. Para agregar"
-                + "\nun nuevo pasajero, complete primero seleccione un"
-                + "\nvuelo. Luego, complete los campos de nombre y DNI."
-                + "\nFinalece apretando 'Añadir pasajero'."
-                + "\n\nPara eliminar un pasajero, complete el campo de"
-                + "\nDNI a eliminar y luego aprite 'Eliminar pasajero'."
-                + "\n\nLa tabla de pasajeros se actualiza automáticamente.";
-        JOptionPane.showMessageDialog(null, cad);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void DeleteFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteFlightButtonActionPerformed
         // TODO add your handling code here:
         try {
@@ -480,6 +516,8 @@ public class UIVuelos extends javax.swing.JFrame {
                 FlightListComboBox.setSelectedIndex(0);
                 FlightListComboBox.removeItemAt(index);
                 modelo.setRowCount(0);
+                
+                actualizarTablaVuelos();
             }            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Seleccione vuelo, por favor.");
@@ -533,6 +571,25 @@ public class UIVuelos extends javax.swing.JFrame {
             PassengerDNIDeleteTextField.setText("Ingrese DNI");
         }
     }//GEN-LAST:event_PassengerDNIDeleteTextFieldFocusLost
+
+    private void FlightDestinationTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FlightDestinationTextFieldFocusGained
+        // TODO add your handling code here:
+        if ("Ingrese destino".equals(FlightDestinationTextField.getText())) { 
+            FlightDestinationTextField.setText("");
+        }
+    }//GEN-LAST:event_FlightDestinationTextFieldFocusGained
+
+    private void FlightDestinationTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_FlightDestinationTextFieldFocusLost
+        // TODO add your handling code here:
+        if ("".equals(FlightDestinationTextField.getText())) { 
+            FlightDestinationTextField.setText("Ingrese destino");
+        }
+    }//GEN-LAST:event_FlightDestinationTextFieldFocusLost
+
+    private void SortFlightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SortFlightButtonActionPerformed
+        // TODO add your handling code here:
+        ordenarVuelos();
+    }//GEN-LAST:event_SortFlightButtonActionPerformed
     
     private void actualizarTabla() {
         try {
@@ -548,6 +605,38 @@ public class UIVuelos extends javax.swing.JFrame {
                 modelo.addRow(dato);
                 ptr = ptr.getSiguiente();
             }            
+        } catch (Exception e) {
+        }
+    }
+    
+    private void actualizarTablaVuelos() {
+        try {
+            modeloVuelos.setRowCount(0);
+            String dato[] = new String[3];
+            Vuelo[] arreglo = objGE.getArreglo();
+            for (int i = 0; i < objGE.getCantidadVuelos(); i++) {
+                System.out.println(arreglo[i].getDestino());
+                dato[0] = "N" + String.valueOf(arreglo[i].getNumVuelo());
+                dato[1] = arreglo[i].getDestino();
+                dato[2] = String.valueOf(arreglo[i].getNumAsientos());
+                modeloVuelos.addRow(dato);
+            }
+            
+        } catch (Exception e) {
+        }
+    }
+    
+    private void ordenarVuelos() {
+        try {
+            modeloVuelos.setRowCount(0);
+            String dato[] = new String[3];
+            Vuelo[] arreglo = objGE.ordnearPorDestino();
+            for (int i = 0; i < objGE.getCantidadVuelos(); i++) {
+                dato[0] = "N" + String.valueOf(arreglo[i].getNumVuelo());
+                dato[1] = arreglo[i].getDestino();
+                dato[2] = String.valueOf(arreglo[i].getNumAsientos());
+                modeloVuelos.addRow(dato);
+            }
         } catch (Exception e) {
         }
     }
@@ -595,6 +684,8 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JButton CreateFlightButton;
     private javax.swing.JButton DeleteFlightButton;
     private javax.swing.JButton DeletePassengerButton;
+    private javax.swing.JLabel FlightDestinationLabel;
+    private javax.swing.JTextField FlightDestinationTextField;
     private javax.swing.JLabel FlightInfoLabel;
     private javax.swing.JTextPane FlightInfoTextPane;
     private javax.swing.JComboBox<String> FlightListComboBox;
@@ -602,6 +693,7 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JTextField FlightNumberTextField;
     private javax.swing.JLabel FlightSeatsLabel;
     private javax.swing.JComboBox<String> FlightSeatsNumberComboBox;
+    private javax.swing.JTable FlightTable;
     private javax.swing.JTextField PassengerDNIDeleteTextField;
     private javax.swing.JLabel PassengerDNILabel;
     private javax.swing.JTextField PassengerDNITextField;
@@ -610,17 +702,22 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JTextField PassengerNameTextField;
     private javax.swing.JTable PassengerTable;
     private javax.swing.JLabel SelectFlightLabel;
+    private javax.swing.JButton SortFlightButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("59919.png")));
+    }
 }

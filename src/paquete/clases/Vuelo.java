@@ -14,11 +14,13 @@ import javax.swing.JOptionPane;
 public class Vuelo {
     private int numVuelo;
     private int numAsientos;
+    private String destino;
     private ListaEnlPasajero listaPasajeros;
 
-    public Vuelo(int numVuelo, int numAsientos) {
+    public Vuelo(int numVuelo, int numAsientos, String destino) {
         this.numVuelo = numVuelo;
         this.numAsientos = numAsientos;
+        this.destino = destino;
         listaPasajeros = new ListaEnlPasajero();
     }
    
@@ -55,10 +57,19 @@ public class Vuelo {
     
     public String obeneterInfoVueloSinPasajeros() {
         String cad = "Número del vuelo: N" + numVuelo + 
-                "\nAsientos disponibles: " +numAsientos;
+                "\nDestino del vuelo: " + destino +
+                "\nAsientos disponibles: " + numAsientos;
         return cad;
-    }  
-    
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+       
     public void agregarPasajeroAlVuelo(Pasajero pasajero) {
         if (numAsientos!=0) {
             pasajero.generarEdad();

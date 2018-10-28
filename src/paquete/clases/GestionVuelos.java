@@ -100,5 +100,19 @@ public class GestionVuelos {
                 arreglo[i] = arreglo[i+1];
             }
         }
-    }    
+    }
+
+    public Vuelo[] ordnearPorDestino() {
+        Vuelo[] A = arreglo;
+        for (int i = 0; i < cantidadVuelos; i++) {
+            for (int j = 0; j < cantidadVuelos-1; j++) {
+                if(A[j].getDestino().compareToIgnoreCase(A[j+1].getDestino()) > 0) {
+                    Vuelo temp = A[j];
+                    A[j] = A[j+1];
+                    A[j+1] = temp;
+                }
+            }
+        }
+        return A;
+    }
 }
