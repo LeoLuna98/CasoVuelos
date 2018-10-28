@@ -67,7 +67,6 @@ public class UIVuelos extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
         DeleteFlightButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         FlightNameLabel = new javax.swing.JLabel();
         FlightSeatsLabel = new javax.swing.JLabel();
@@ -252,14 +251,6 @@ public class UIVuelos extends javax.swing.JFrame {
             }
         });
         AddPassengerPanel.add(DeleteFlightButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 210, -1));
-
-        jButton3.setText("jButton3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        AddPassengerPanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
 
         getContentPane().add(AddPassengerPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 590, 300));
 
@@ -542,11 +533,6 @@ public class UIVuelos extends javax.swing.JFrame {
             PassengerDNIDeleteTextField.setText("Ingrese DNI");
         }
     }//GEN-LAST:event_PassengerDNIDeleteTextFieldFocusLost
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        objGE.listaOrdenda(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
     
     private void actualizarTabla() {
         try {
@@ -626,7 +612,6 @@ public class UIVuelos extends javax.swing.JFrame {
     private javax.swing.JLabel SelectFlightLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
